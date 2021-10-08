@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "16ff94f9-8099-412e-8168-02bfe044475e"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -7,6 +10,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
+          "style": "sass",
           "strict": true
         }
       },
@@ -27,7 +31,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.sass"
             ],
             "scripts": []
           },
@@ -94,7 +98,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.sass"
             ],
             "scripts": []
           }
