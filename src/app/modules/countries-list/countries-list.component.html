@@ -1,0 +1,11 @@
+<div class="contries-list">
+<ul *ngFor="let item of countriesList | keyvalue">
+    <h2 class="tittle-contries-list dark-blue">{{item.key}}</h2>
+    <li *ngFor="let val of item.value" (click)="showInformation(val['name']['common'],item.key )">
+        <img class="flag-contries-list" [src]="val['flags'][0]">
+        {{val['name']['common']}}
+        <img *ngIf="favoriteList.includes((''+val['name']['common']).toLowerCase( )) " class="favorite-contries-list" src="../../../../../assets/img/stary.svg">
+    </li>
+</ul>
+</div>
+<app-country-popup [country]="countrySelected" [countriesList]="countriesList"></app-country-popup>

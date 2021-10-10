@@ -1,0 +1,16 @@
+<div class="header" >
+    <h1 class="title dark-blue">Find any <strong class="light-blue">country</strong> in the world.</h1>
+    <div class="img-back">
+    </div>
+</div>
+<div class="shearch-bar" >
+  <form [formGroup]="form" novalidate>
+    <input type="search" class="in-search"  id="textShearch" [formControl]="form.controls.textShearch" placeholder="Search country">
+    <select name="select" class="sel-search" (change)="onChangeSelect($event)" [formControl]="form.controls.filter">
+      <option *ngFor="let option of shearchFilter"  [value]="option.code">{{option.name}}</option>
+    </select>
+    <button type="button" class="btn-search"
+    (click)="setFilter(form.controls.textShearch, form.controls.filter)">lupa</button>
+  </form>
+</div>
+<app-countries-list [countriesList]="countriesListFiltered" [favoriteList]="favoriteList"  ></app-countries-list>
