@@ -180,11 +180,19 @@ export class CountriesListComponent implements OnInit {
   }
 
   showInformation(val: any, key: any){
+    document.body.style.overflow='hidden';
     const country= this.countriesListFiltered.get(key)?.filter(
       country =>
-      (''+country['name']['common']).toLowerCase( )=== val.toLowerCase( )
+      (''+country['name']['common']).toLowerCase()=== val.toLowerCase()
     )[0];
     this.getCountrySelected(country);
+  }
+
+  favoriteOp(event: string){
+    this.countrySelected.setFavorite(!this.countrySelected.getFavorite());
+    this.favoriteList.includes(event)?
+    this.favoriteList=this.favoriteList.filter(item => item !== event):
+    this.favoriteList.push(event);
   }
 
 }

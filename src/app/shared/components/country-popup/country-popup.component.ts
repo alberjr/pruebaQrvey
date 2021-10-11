@@ -1,4 +1,4 @@
-import { Component, OnInit, Input  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { CountryDescPopup } from 'src/app/shared/entities/country-desc-popup';
 
 @Component({
@@ -9,7 +9,7 @@ import { CountryDescPopup } from 'src/app/shared/entities/country-desc-popup';
 export class CountryPopupComponent implements OnInit {
 
   @Input()  country!: CountryDescPopup;
-
+  @Output() favorite=  new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
@@ -19,6 +19,9 @@ export class CountryPopupComponent implements OnInit {
   close(){
     document.body.style.overflow='auto';
     this.country.setShowPop(false);
+  }
+  setFavorite(favorite: string){
+    this.favorite.emit(favorite.toLowerCase());
   }
 
 }

@@ -3,7 +3,11 @@
         <img class="close-popup" src="../../../../../assets/img/close.png" 
         (click)="close()"
         >
-        <h3 class="title-popup">{{country.getName()}}</h3>
+        <h3 class="title-popup">{{country.getName()}} 
+            <img class="favorite-popup" 
+            [src]="country.getFavorite()?'../../../../../assets/img/starT.svg':'../../../../../assets/img/starF.svg'" 
+            (click)="setFavorite(country.getName())"
+            ></h3>
         <p class="text-popup" [innerHTML]="country.getDesc()"></p>
         <img class="flag-popup" [src]="country.getFlag()">
     </div>

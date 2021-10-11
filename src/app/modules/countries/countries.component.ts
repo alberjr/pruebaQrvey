@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CounntryCatalogsService } from 'src/app/shared/services/country-catalogs.service';
 import {Subject} from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
@@ -43,23 +42,6 @@ export class CountriesComponent implements OnInit {
   }
 
 
-  getErrorMessage(control: any) {
-    if (control.hasError('required')) {
-      return 'El campo debe ser diligenciado';
-    } else if (control.hasError('minlength')) {
-      return 'El mínimo de digitos son ' + (control.errors.minlength.requiredLength - 1);
-    } else {
-      return 'El campo no cumple con un formato válido';
-    }
-  }
-
-  formControlValid(control: FormControl) {
-    if (control.valid) {
-      return true;
-    }
-    control.markAsTouched();
-    return false;
-  }
 
 
 }
