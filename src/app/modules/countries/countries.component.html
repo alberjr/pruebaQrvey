@@ -10,7 +10,10 @@
       <option *ngFor="let option of shearchFilter"  [value]="option.code">{{option.name}}</option>
     </select>
     <button type="button" class="btn-search"
-    (click)="setFilter(form.controls.textShearch, form.controls.filter)">lupa</button>
+    (click)="setFilter()">lupa</button>
   </form>
 </div>
-<app-countries-list [countriesList]="countriesListFiltered" [favoriteList]="favoriteList"  ></app-countries-list>
+<app-countries-list [textShearch]="form.controls.textShearch.value"
+[filter]="form.controls.filter.value"
+[events]="eventsSubject.asObservable()">
+</app-countries-list> 

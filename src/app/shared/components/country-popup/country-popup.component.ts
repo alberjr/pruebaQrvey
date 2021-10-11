@@ -1,4 +1,5 @@
 import { Component, OnInit, Input  } from '@angular/core';
+import { CountryDescPopup } from 'src/app/shared/entities/country-desc-popup';
 
 @Component({
   selector: 'app-country-popup',
@@ -7,35 +8,17 @@ import { Component, OnInit, Input  } from '@angular/core';
 })
 export class CountryPopupComponent implements OnInit {
 
-  @Input() country: any={};
-  @Input() countriesList=  new Map<string,[]>();
+  @Input()  country!: CountryDescPopup;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  getBorders(borders:[]): string{
-    let border='';
-    this.countriesList.forEach((value: [], key: string) => {
-      for(let country of value){
-        if(borders.includes(country['cioc'])){
-          if(border!==''){
-            border+=', ';
-          }
-          border+=country['name']['common'];
-        }
-      }
-    });
-    if(border===''){
-      border='N/A';
-    }
-    return border;
-  }
 
   close(){
     document.body.style.overflow='auto';
-    this.country={};
+    this.country.setShowPop(false);
   }
 
 }

@@ -15,32 +15,16 @@ export class CounntryCatalogsService {
         private httpClient: HttpClient) {
     }
 
-    getCountries(): Observable<[]> {
+    getCountries(): Observable<any> {
         const url = this.endpoint + parametros.countryService;    
 
-        return this.httpClient.get<[]>(url)
+        return this.httpClient.get<any>(url)
         .pipe(
             timeout(parametros.timeoutGeneric),
             retryWhen(errors => errors.pipe(
-                delay(parametros.delayGeneric),
-                take(parametros.numRetriesServices),
-                tap(response => {
-                    if (response.status) {
-                        if ((response.status + '').startsWith('5') ||
-                            (response.status + '').startsWith('4')) {
-                            if ((response.status + '').startsWith('4')) {
-                                this.failuresNum = parametros.numRetriesServices;
-                            } else {
-                                this.failuresNum++;
-                            }
-                            if (this.failuresNum >= parametros.numRetriesServices) {
-                                throw response;
-                            }
-                        }
-                    }
-                })
+                delay(parametros.delayGeneric)
             )),
-            map((result) => {
+            map((result: HttpResponse<any>) => {
                 return  result;
             }),
             catchError(this.handleError)

@@ -7,6 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { ModulesModule } from './modules/modules.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from './core';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

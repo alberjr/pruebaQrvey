@@ -1,14 +1,9 @@
-    <div class="modal" *ngIf="country['name']"></div>
-    <div *ngIf="country['name']" class="popup" >
+    <div class="modal" *ngIf="country.getShowPop()"></div>
+    <div *ngIf="country.getShowPop()" class="popup" >
         <img class="close-popup" src="../../../../../assets/img/close.png" 
         (click)="close()"
         >
-        <h3 class="title-popup">{{country['name']['common']}}</h3>
-        <p class="text-popup">Region: {{country['region']}} <br>
-        Population: {{country['population']}} <br>
-        Capital: {{country['capital'][0]}} <br>
-        Language: {{country['languages'][0]}} <br>
-        Border Countries: {{getBorders(country['borders'])}} <br>
-        Flag:</p>
-        <img class="flag-popup" [src]="country['flags'][0]">
+        <h3 class="title-popup">{{country.getName()}}</h3>
+        <p class="text-popup" [innerHTML]="country.getDesc()"></p>
+        <img class="flag-popup" [src]="country.getFlag()">
     </div>
