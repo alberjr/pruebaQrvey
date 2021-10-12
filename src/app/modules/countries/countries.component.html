@@ -5,15 +5,18 @@
 </div>
 <div class="shearch-bar" >
   <form [formGroup]="form" novalidate>
-    <input type="search" class="in-search"  id="textShearch" [formControl]="form.controls.textShearch" placeholder="Search country">
+    <input type="search" class="in-search input-field"  id="textShearch" [formControl]="form.controls.textShearch" placeholder="Search country">
     <select name="select" class="sel-search" (change)="onChangeSelect($event)" [formControl]="form.controls.filter">
       <option *ngFor="let option of shearchFilter"  [value]="option.code">{{option.name}}</option>
     </select>
     <button type="button" class="btn-search"
-    (click)="setFilter()">lupa</button>
+    (click)="setFilter()">
+    <img class="lupa-search" src="../../../../../assets/img/lupa.svg" 
+    ></button>
   </form>
 </div>
 <app-countries-list [textShearch]="form.controls.textShearch.value"
 [filter]="form.controls.filter.value"
-[events]="eventsSubject.asObservable()">
+[events]="eventsSubject.asObservable()"
+(shearchFilter)="getFilter($event)">
 </app-countries-list> 

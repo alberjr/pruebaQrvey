@@ -41,7 +41,12 @@ export class CountriesComponent implements OnInit {
     this.eventsSubject.next();
   }
 
-
+  getFilter(event: []){
+    this.shearchFilter=[
+      {code: '' , name:'Show All'},
+      {code: 'Favorites' , name:'Favorites'}];
+      event.forEach(item=>this.shearchFilter.push({code: item , name: item}));
+  }
 
 
 }

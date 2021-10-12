@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CounntryCatalogsService } from 'src/app/shared/services/country-catalogs.service';
 import {  finalize } from 'rxjs/operators';
 import {  Observable,Subscription} from 'rxjs';
@@ -14,19 +14,11 @@ export class CountriesListComponent implements OnInit {
   @Input() events!: Observable<void>;
   @Input()  textShearch!: string;
   @Input() filter!: string;
+  @Output() shearchFilter=  new EventEmitter();
   countrySelected= new CountryDescPopup();
   countriesList= [];
   countriesListGroupBy= new Map<string,[]>();
   countriesListFiltered= new Map<string,[]>();
-  shearchFilter= [
-                  {code: '' , name:'Show All'},
-                  {code: 'Favorites' , name:'Favorites'},
-                  {code: 'Africa' , name:'Africa'},
-                  {code: 'Americas' , name:'America'},
-                  {code: 'Asia' , name:'Asia'},
-                  {code: 'Europe' , name:'Europe'},
-                  {code: 'Oceania' , name:'Oceania'},
-                  ];
   favoriteList= [ 'Cuba'.toLowerCase( ),'British Indian Ocean Territory'.toLowerCase( )
                 ]
                   ;
@@ -46,7 +38,7 @@ export class CountriesListComponent implements OnInit {
           this.sortCountries();
           this.countriesListGroupBy=this.groupBy(this.countriesList,'region');
           this.countriesListFiltered= this.countriesListGroupBy;
-          console.log(this.countriesListGroupBy);
+          this.shearchFilter.emit(Array.from(this.countriesListFiltered.keys()));
         })
       )
       .subscribe((resp) => {
@@ -77,17 +69,29 @@ export class CountriesListComponent implements OnInit {
         this.filterByFavorite(textShearch);
       }else{
         if(filter===''){
-          this.countriesListFiltered= new Map(this.countriesListGroupBy);  
-          console.log(this.countriesListFiltered);
+          this.filterByAll(textShearch);
         }else{
           this.filterByContinent(filter,textShearch);
         }
+      }      
+  }
+  
+  filterByAll(textShearch: string){ 
+    this.countriesListFiltered=new Map();
+    const countries= new Map(this.countriesListGroupBy);    
+    countries.forEach((value: [], key: string) => {
+      const values: any= value.filter(
+        country => 
+        (!textShearch || textShearch==='' || (''+country['name']['common']).toLowerCase( )
+        .includes(textShearch.toLowerCase( )))
+      );
+      if(values.length>0){
+      this.countriesListFiltered.set(key,values);
       }
-
+  })
   }
 
-  filterByContinent(continent: string, textShearch: any){    
-    console.log(this.countriesListGroupBy);
+  filterByContinent(continent: string, textShearch: any){  
     const map = this.countriesListGroupBy.get(continent);
     let values: any= [];
     if(map){
@@ -101,7 +105,6 @@ export class CountriesListComponent implements OnInit {
     }
     this.countriesListFiltered= new Map();
     this.countriesListFiltered.set(continent,values);
-      console.log(this.countriesListFiltered);
   }
 
   filterByFavorite(textShearch: string){ 
@@ -114,12 +117,10 @@ export class CountriesListComponent implements OnInit {
         && (!textShearch || textShearch==='' || (''+country['name']['common']).toLowerCase( )
         .includes(textShearch.toLowerCase( )))
       );
-      console.log(key,values);
       if(values.length>0){
       this.countriesListFiltered.set(key,values);
       }
   })
-      console.log(this.countriesListFiltered);
   }
 
   groupBy(countriesList: any[], keyField: string):Map<string,[]>{
