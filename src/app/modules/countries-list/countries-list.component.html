@@ -1,4 +1,4 @@
-<div class="contries-list">
+<div [ngClass]="countriesListFiltered.size>0?'contries-list':'contries-list-2'">
 <ul *ngFor="let item of countriesListFiltered | keyvalue">
     <h2 class="tittle-contries-list dark-blue">{{item.key}}</h2>
     <li *ngFor="let val of item.value" (click)="showInformation(val['name']['common'],item.key )">
@@ -7,5 +7,6 @@
         <img *ngIf="favoriteList.includes((''+val['name']['common']).toLowerCase( )) " class="favorite-contries-list" src="../../../../../assets/img/stary.svg">
     </li>
 </ul>
+<p *ngIf="countriesListFiltered.size<=0" class= "no-results-found">No results found</p>
 </div>
 <app-country-popup [country]="countrySelected" (favorite)="favoriteOp($event)"></app-country-popup>

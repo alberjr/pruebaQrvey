@@ -89,7 +89,7 @@ export class CountriesListComponent implements OnInit {
       if(values.length>0){
       this.countriesListFiltered.set(key,values);
       }
-  })
+  });
   }
 
   filterByContinent(continent: string, textShearch: any){  
