@@ -19,9 +19,7 @@ export class CountriesListComponent implements OnInit {
   countriesList= [];
   countriesListGroupBy= new Map<string,[]>();
   countriesListFiltered= new Map<string,[]>();
-  favoriteList= [ 'Cuba'.toLowerCase( ),'British Indian Ocean Territory'.toLowerCase( )
-                ]
-                  ;
+  favoriteList= new Array();
 
   constructor(
     private counntryCatalogsService: CounntryCatalogsService) { }
@@ -92,7 +90,8 @@ export class CountriesListComponent implements OnInit {
   });
   }
 
-  filterByContinent(continent: string, textShearch: any){  
+  filterByContinent(continent: string, textShearch: any){ 
+    this.countriesListFiltered= new Map(); 
     const map = this.countriesListGroupBy.get(continent);
     let values: any= [];
     if(map){
@@ -103,9 +102,10 @@ export class CountriesListComponent implements OnInit {
       && (!textShearch || textShearch==='' || (''+country['name']['common']).toLowerCase( )
       .includes(textShearch.toLowerCase( )))
     );
-    }
-    this.countriesListFiltered= new Map();
+    if(values.length>0){
     this.countriesListFiltered.set(continent,values);
+    }
+    }
   }
 
   filterByFavorite(textShearch: string){ 
