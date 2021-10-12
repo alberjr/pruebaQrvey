@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of,throwError } from 'rxjs';
-import { map, catchError, timeout, retryWhen, delay, take, tap } from 'rxjs/operators';
+import { map, catchError, timeout, retryWhen, delay} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { parametros } from '../constants/parameters';

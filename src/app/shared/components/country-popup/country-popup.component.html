@@ -1,5 +1,5 @@
-    <div class="modal" *ngIf="country.getShowPop()"></div>
-    <div *ngIf="country.getShowPop()" class="popup" >
+    <div class="modal" *ngIf="country?country.getShowPop():false"></div>
+    <div *ngIf="country?country.getShowPop():false" class="popup" >
         <img class="close-popup" src="../../../../../assets/img/close.png" 
         (click)="close()"
         >

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Subject} from 'rxjs';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-countries',
@@ -12,12 +12,7 @@ export class CountriesComponent implements OnInit {
   eventsSubject: Subject<void> = new Subject<void>();
   shearchFilter= [
                   {code: '' , name:'Show All'},
-                  {code: 'Favorites' , name:'Favorites'},
-                  {code: 'Africa' , name:'Africa'},
-                  {code: 'Americas' , name:'America'},
-                  {code: 'Asia' , name:'Asia'},
-                  {code: 'Europe' , name:'Europe'},
-                  {code: 'Oceania' , name:'Oceania'},
+                  {code: 'Favorites' , name:'Favorites'}
                   ];
 
   constructor(

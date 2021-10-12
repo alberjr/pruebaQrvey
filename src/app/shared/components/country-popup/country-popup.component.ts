@@ -20,6 +20,7 @@ export class CountryPopupComponent implements OnInit {
     document.body.style.overflow='auto';
     this.country.setShowPop(false);
   }
+  
   setFavorite(favorite: string){
     this.favorite.emit(favorite.toLowerCase());
   }

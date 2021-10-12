@@ -5,7 +5,6 @@ import { CountriesComponent } from './countries/countries.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CountriesListComponent } from './countries-list/countries-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CountryPopupComponent } from '../shared/components/country-popup/country-popup.component';
 
 
 @NgModule({
@@ -22,8 +21,7 @@ import { CountryPopupComponent } from '../shared/components/country-popup/countr
     ],
     declarations: [
       CountriesComponent,
-        CountriesListComponent,
-        CountryPopupComponent
+        CountriesListComponent
     ]
   })
   export class ModulesModule { }

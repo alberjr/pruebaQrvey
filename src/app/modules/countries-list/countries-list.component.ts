@@ -11,7 +11,7 @@ import { CountryDescPopup } from 'src/app/shared/entities/country-desc-popup';
 })
 export class CountriesListComponent implements OnInit {
   private eventsSubscription!: Subscription;
-  @Input() events!: Observable<void>;
+  @Input() events=new Observable<void>();
   @Input()  textShearch!: string;
   @Input() filter!: string;
   @Output() shearchFilter=  new EventEmitter();
@@ -43,7 +43,7 @@ export class CountriesListComponent implements OnInit {
       )
       .subscribe((resp) => {
         if (resp !== undefined) {
-          if (resp) {
+          if (resp.status==200) {
             this.countriesList=resp.body;
           }
         }
@@ -64,6 +64,7 @@ export class CountriesListComponent implements OnInit {
       return 0;
     });
   }
+  
   setFilter(textShearch:string, filter: string){
       if(filter==='Favorites'){
         this.filterByFavorite(textShearch);
