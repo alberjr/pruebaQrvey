@@ -10,11 +10,12 @@
 
 .popup
     position: fixed
-    bottom: 20%
-    right: 30%
+    min-width: 30%
+    top: 20%
+    left: 30%
     z-index: 9
-    width: 886px
-    height: 506px
+    width: auto
+    height: auto
     background: $white
     border: 1px solid $grey
     box-sizing: border-box
@@ -42,7 +43,10 @@
 // MEDIA QUERIES
 //MÓVILES
 @media screen and (max-width: 320px)
-@media screen and (min-width: 321px) and (max-width: 375px)
-@media screen and (min-width: 376px) and (max-width: 540px)
-// TABLETS
-@media screen and (min-width: 667px) and (max-width: 1024px)
+    .popup
+        left: 8%
+        min-width: 20%
+@media screen and (min-width: 321px) and (max-width: 540px)
+    .popup
+        left: 10%
+        min-width: 20%

@@ -164,16 +164,16 @@ export class CountriesListComponent implements OnInit {
       this.favoriteList.includes((country['name']['common']).toLowerCase( )) 
       );
     let desc='';
-    desc+=country['region']?'Region: '+country['region']+' <br>':'';
-    desc+=country['population']?'Population: '+country['population']+' <br>':'';      
-    desc+=country['capital']?'Capital: '+country['capital'].join(', ')+' <br>':'';
-    desc+=country['currencies']?'Currency: '+Object.values(country['currencies'])
+    desc+='Region: '+(country['region']?country['region']:'N/A')+' <br>';
+    desc+='Population: '+(country['population']?country['population']:'N/A')+' <br>';      
+    desc+='Capital: '+(country['capital']?country['capital'].join(', '):'N/A')+' <br>';
+    desc+='Currency: '+(country['currencies']?Object.values(country['currencies'])
           .map(function(elem: any){
             return elem['name'];
-          }).join(', ')+' <br>':'';
-    desc+=country['languages']?
-          'Language: '+Object.values(country['languages']).join(', ')+' <br>':'';
-    desc+=country['borders']?'Border Countries: '+this.getBorders(country['borders'])+' <br>':'';
+          }).join(', '):'N/A')+' <br>';
+    desc+='Language: '+(country['languages']?
+      Object.values(country['languages']).join(', '):'N/A')+' <br>';
+    desc+='Border Countries: '+(country['borders']?this.getBorders(country['borders']):'N/A')+' <br>';
     desc+='Flag:';
     this.countrySelected.setDesc(desc);
     this.countrySelected.setShowPop(true);
